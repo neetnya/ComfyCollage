@@ -124,7 +124,8 @@ def main():
         print(f"[PROCESS] 正在生成第 {group_index}/{len(groups)} 张对比图……")
 
         width = len(models) * TILE_SIZE + (len(models) + 1) * GAP
-        height = HEADER_HEIGHT + len(group) * (TILE_SIZE + LABEL_HEIGHT) + GAP
+        # 模型标题和第一行文件名使用独立区域，避免顶部文字重叠。
+        height = HEADER_HEIGHT + LABEL_HEIGHT + len(group) * (TILE_SIZE + LABEL_HEIGHT) + GAP
         sheet = Image.new("RGB", (width, height), BACKGROUND)
         draw = ImageDraw.Draw(sheet)
 
@@ -137,7 +138,7 @@ def main():
 
         # 每行对应一个文件名，每列对应一个模型
         for row, filename in enumerate(group):
-            y = HEADER_HEIGHT + row * (TILE_SIZE + LABEL_HEIGHT)
+            y = HEADER_HEIGHT + LABEL_HEIGHT + row * (TILE_SIZE + LABEL_HEIGHT)
             draw.text((GAP, y - LABEL_HEIGHT + 5), filename,
                       font=title_font, fill=(20, 20, 20))
 
