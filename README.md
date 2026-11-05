@@ -1,4 +1,4 @@
-﻿# ComfyCollage
+# ComfyCollage
 
 ComfyCollage 是一个 Windows WPF 小工具，用于横向比较多个 AI 绘图模型生成的图片。
 
@@ -6,7 +6,7 @@ ComfyCollage 是一个 Windows WPF 小工具，用于横向比较多个 AI 绘�
 
 - WPF 负责选择图片根目录、启动 Python、显示实时日志。
 - Python + Pillow 负责扫描图片、缩放排版和生成 PNG 拼图。
-- 输出目录固定为程序运行目录下的 `_output` 文件夹。
+- 输出目录为所选图片根目录下的 `_output` 文件夹。
 
 ## 2. 环境要求
 
@@ -72,10 +72,10 @@ python -c "from PIL import Image; print('Pillow OK')"
 
 ## 6. 输出结果
 
-生成文件位于：
+生成文件位于所选图片根目录下的 `_output` 文件夹：
 
 ```text
-程序目录/
+图片根目录/
 └─ _output/
    ├─ sheet_01.png
    ├─ sheet_02.png

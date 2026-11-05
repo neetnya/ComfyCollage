@@ -98,8 +98,18 @@ def main():
 
     print(f"[INFO] 共识别到 {len(indices)} 个不同图片文件名。")
 
-    output_dir = Path(__file__).resolve().parent / "_output"
-    output_dir.mkdir(parents=True, exist_ok=True)
+    # 输出目录跟随用户选择的图片根目录，不再写入程序所在目录。
+    # 以 "_" 开头的文件夹不会被当作模型目录，因此重复扫描也不会污染结果。
+    output_dir = base / "_output"
+    try:
+        output_dir.mkdir(parents=True, exist_ok=True)
+    except OSError as exc:
+        print(f"[ERROR] 无法创建输出目录：{output_dir}（{exc}）")
+        print("[HINT] 常见原因：安全软件拦截 Python 写入、目录权限不足或磁盘只读。")
+        print(f"[HINT] 当前用户：{os.environ.get('USERNAME', '未知')}；Python：{sys.executable}")
+        print(f"[HINT] 父目录是否存在且可写：{base.is_dir()} / {os.access(base, os.W_OK)}")
+        print("[HINT] 可尝试：把 python.exe 加入安全软件白名单，或以管理员身份运行本程序。")
+        return 1
     print(f"[INFO] 输出目录：{output_dir}")
 
     palette = [

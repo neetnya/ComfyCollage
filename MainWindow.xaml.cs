@@ -126,10 +126,9 @@ namespace ComfyCollage
 
                 if (process.ExitCode == 0)
                 {
+                    // 成功时静默处理，只在日志中记录，不弹出完成提示框。
                     AppendLog("[SUCCESS] 对比图生成完成。");
-                    MessageBox.Show(
-                        $"生成完成！\n输出目录：\n{Path.Combine(appDirectory, "_output")}",
-                        "成功", MessageBoxButton.OK, MessageBoxImage.Information);
+                    AppendLog($"[INFO] 输出目录：{Path.Combine(basePath, "_output")}");
                 }
                 else
                 {
