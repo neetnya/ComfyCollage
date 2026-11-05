@@ -91,3 +91,6 @@ python -c "from PIL import Image; print('Pillow OK')"
 ```text
 dotnet publish -c Release
 ```
+
+应用图标为项目根目录的 `icon.ico`（已通过 `ApplicationIcon` 打包进 exe，并作为 `Resource` 用于窗口图标），
+可用 `tools/make_icon.py` 重新生成；`tools/preview_sizes.py` 可输出各小尺寸的辨识度预览。
